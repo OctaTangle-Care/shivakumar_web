@@ -1,0 +1,702 @@
+
+{% load static %}
+
+{% include "header.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts for a modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles for animations and 3D effects */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F3F4F6;
+            color: #1F2937;
+            overflow-x: hidden;
+            margin-top:200px;
+        }
+
+        /* 3D animated card container */
+        .project-card {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            will-change: transform;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .project-card .inner-content {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .project-card:hover .inner-content {
+            transform: rotateY(5deg);
+        }
+
+        /* Staggered animation classes for section entry */
+        .animate-slide-in {
+            animation: slideInFromLeft 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* 3D Box effect for sections */
+        .section-3d-box {
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05), 0 6px 6px rgba(0,0,0,0.1);
+            position: relative;
+            transform: translateZ(0); /* Create a new stacking context for 3D */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .section-3d-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: -1;
+            transform: scale(0.95);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .section-3d-box:hover {
+            transform: translateY(-5px) translateZ(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .section-3d-box:hover::before {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 py-12">
+
+    <!-- Header Section -->
+    <header class="text-center mb-16 px-4">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 mb-4 animate-[fadeIn_1.5s_ease-out_forwards]">
+          Shiva's Projects <span id="project-years" class="text-blue-600"></span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto animate-[fadeIn_1.5s_ease-out_1s_forwards] opacity-0">
+            A showcase of my work, from past creations to future aspirations.
+        </p>
+    </header>
+
+    <main class="container mx-auto px-4">
+
+        <!-- Completed Projects Section -->
+        <section class="mb-20">
+            <div class="p-8 md:p-12 section-3d-box bg-blue-50">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10 animate-slide-in">Completed</h2>
+                <div class="flex flex-col items-center space-y-8">
+                    
+                    <!-- Project Card 1 -->
+                    <div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+                        <div class="inner-content flex flex-col md:flex-row">
+                            <!-- Image section -->
+                            {% comment %} <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+                                <img src="{% static 'image/mywebsite.png' %}" alt="Completed Project 1" class="w-full h-auto object-cover md:h-full">
+                            </div> {% endcomment %}
+                            <div class="w-full md:w-1/2 flex items-center justify-center overflow-hidden md:rounded-l-3xl">
+    <img src="{% static 'image/mywebsite.png' %}" alt="Completed Project 1" class="max-w-full max-h-full object-contain">
+</div>
+                            <!-- Content section -->
+                            <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-3xl font-bold text-gray-800 mb-2">Portfolio Website</h3>
+                                    <p class="text-sm text-gray-600 mb-4">A showcase of my skills and past work, built with modern web technologies.</p>
+                                    <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: Web App</span>
+                                </div>
+                    <br>
+                                <a href="/update" class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-blue-600 hover:bg-blue-700 transition-colors">
+                                    View Project
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+   
+        <div class="w-full md:w-1/2 flex items-center justify-center overflow-hidden md:rounded-l-3xl">
+    <img src="{% static 'image/sva.jpg' %}" alt="Completed Project 1" class="max-w-full max-h-full object-contain">
+</div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">Simple Virtual Assistant</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    A lightweight voice-powered assistant designed to handle everyday tasks like opening websites, setting alarms, and answering basic questions. Built for simplicity and ease of use, it’s a handy tool for streamlining small routines.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: Web App</span>
+            </div>
+            <br>
+            <a href="/update" class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-blue-600 hover:bg-blue-700 transition-colors">
+                View Project
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Project Card 3 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        {% comment %} <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="{% static 'image/resultportal.png' %}" alt="Result Portal Standalone Application" class="w-full h-auto object-cover md:h-full">
+        </div> {% endcomment %}
+        <div class="w-full md:w-1/2 flex items-center justify-center overflow-hidden md:rounded-l-3xl">
+    <img src="{% static 'image/resultportal.png' %}" alt="Completed Project 1" class="max-w-full max-h-full object-contain">
+</div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">Result Portal Standalone Application</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    A desktop-based solution developed to streamline student result processing for the college exam branch. This application significantly reduced manual workload by automating data entry and result generation using C# and JSON.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: Desktop Application</span>
+            </div>
+            <br>
+            <a href="/update" class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-blue-600 hover:bg-blue-700 transition-colors">
+                View Project
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Project Card 4 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        {% comment %} <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="https://www.researchgate.net/publication/372478342/figure/fig8/AS:11431281255225052@1719410375395/Block-diagram-of-the-proposed-crop-recommender-system-This-recommender-system-employs.tif" alt="Crop Recommendation ML System" class="w-full h-auto object-cover md:h-full">
+        </div> {% endcomment %}
+        <div class="w-full md:w-1/2 flex items-center justify-center overflow-hidden md:rounded-l-3xl">
+    <img src="https://www.researchgate.net/publication/372478342/figure/fig8/AS:11431281255225052@1719410375395/Block-diagram-of-the-proposed-crop-recommender-system-This-recommender-system-employs.tif" alt="Completed Project 1" class="max-w-full max-h-full object-contain">
+</div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">Crop Recommendation ML System</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    A machine learning–based system designed to recommend optimal crops by analyzing soil type, temperature, and rainfall data. Achieved 90% accuracy using RandomForestClassifier, with additional experimentation using DecisionTreeClassifier. Built as a mini-project to explore practical applications of ML in agriculture.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: ML Project</span>
+            </div>
+            <br>
+            <a href="/update" class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-blue-600 hover:bg-blue-700 transition-colors">
+                View Project
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Project Card 5 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        {% comment %} <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="{% static 'image/sm.png' %}" alt="SMARTMART Online Ordering Platform" class="w-full h-auto object-cover md:h-full">
+        </div> {% endcomment %}
+        <div class="w-full md:w-1/2 flex items-center justify-center overflow-hidden md:rounded-l-3xl">
+    <img src="{% static 'image/sm.png' %}" alt="Completed Project 1" class="max-w-full max-h-full object-contain">
+</div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">SMARTMART Online Ordering Platform</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    Developed a full-featured e-commerce website that connects users with nearby local stores through an integrated shop locator. Introduced a unique "Cash on Collect" payment method to improve accessibility and trust in underserved areas. Built using Django, MySQL, and Google Maps API, this platform bridges digital convenience with local commerce.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: Website</span>
+            </div><br>
+            <a href="/update" class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-blue-600 hover:bg-blue-700 transition-colors">
+                View Project
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Project Card 6 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        {% comment %} <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="{% static 'image/s10.jpg' %}" alt="SURAKSHA Emergency Location Sharing IoT Project" class="w-full h-auto object-cover md:h-full">
+        </div> {% endcomment %}
+        <div class="w-full md:w-1/2 flex items-center justify-center overflow-hidden md:rounded-l-3xl">
+    <img src="{% static 'image/s10.jpg' %}" alt="Completed Project 1" class="max-w-full max-h-full object-contain">
+</div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">SURAKSHA! Emergency Location Sharing</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    SURAKSHA! is an IoT-powered safety system designed to enable real-time location sharing during emergencies. Built with Django and Raspberry Pi, it integrates hardware and web technologies to provide instant alerts and location visibility—marking a major milestone in my journey beyond campus innovation.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: IoT & Web Application</span>
+            </div><br>
+            <a href="/update" class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-blue-600 hover:bg-blue-700 transition-colors">
+                View Project
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Project Card 7 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        {% comment %} <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="{% static 'image/wr.jpg' %}" alt="Wall-E Robot College Fest Project" class="w-full h-auto object-cover md:h-full">
+        </div> {% endcomment %}
+
+        <div class="w-full md:w-1/2 flex items-center justify-center overflow-hidden md:rounded-l-3xl">
+    <img src="{% static 'image/wr.jpg' %}" alt="Completed Project 1" class="max-w-full max-h-full object-contain">
+</div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">Wall-E Robot [College Fest Project]</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    Spearheaded the design and development of an interactive Wall-E robot for the 2025 college fest. Equipped with conversational abilities, music streaming, game interaction, and Q&A features, this project blended hardware and software to create an engaging, intelligent companion. Powered by Raspberry Pi and servo motors, it brought tech and personality together on stage.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: Robotics Project</span>
+            </div><br>
+            <a href="/update" class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-blue-600 hover:bg-blue-700 transition-colors">
+                View Project
+            </a>
+        </div>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- Running Projects Section -->
+        <section class="mb-20">
+            <div class="p-8 md:p-12 section-3d-box bg-green-50">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10 animate-slide-in">Running</h2>
+                <div class="flex flex-col items-center space-y-8">
+                    
+                   
+                    <!-- Project Card 3 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        {% comment %} <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="{% static 'image/g1.png' %}" alt="GNANOW E-Commerce Platform" class="w-full h-auto object-cover md:h-full">
+        </div> {% endcomment %}
+
+        <div class="w-full md:w-1/2 flex items-center justify-center overflow-hidden md:rounded-l-3xl">
+    <img src="{% static 'image/g1.png' %}" alt="Completed Project 1" class="max-w-full max-h-full object-contain">
+</div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">GNANOW E-Commerce Platform [Client Project]</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    Currently developing a modern e-commerce platform for GNANOW, a clothing brand focused on local fashion. The site features dynamic product listings, secure payment integration via Razorpay, and a clean user interface. Built using Django, MySQL, and JavaScript, this project enhances brand visibility and customer accessibility.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: Web App (E-Commerce)</span>
+            </div><br>
+            <button disabled class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-gray-400 cursor-not-allowed">
+                View Project
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Project Card 4 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        {% comment %} <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="{% static 'image/g.png' %}" alt="AiraNaturals Organic Products Platform" class="w-full h-auto object-cover md:h-full">
+        </div> {% endcomment %}
+
+        <div class="w-full md:w-1/2 flex items-center justify-center overflow-hidden md:rounded-l-3xl">
+    <img src="{% static 'image/g.png' %}" alt="Completed Project 1" class="max-w-full max-h-full object-contain">
+</div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">AiraNaturals Organic Products Platform [Client Project]</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    Currently building a responsive e-commerce platform for AiraNaturals, an organic brand offering products like honey and ghee. The site is designed to provide a seamless shopping experience while promoting natural living. Developed using Django, MySQL, and JavaScript, it blends functionality with earthy aesthetics.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: Web App (E-Commerce for Organic Products)</span>
+            </div><br>
+            <button disabled class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-gray-400 cursor-not-allowed">
+                View Project
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Project Card 5 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        {% comment %} <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="{% static 'image/otc.jpg' %}" alt="OctaTangleCare Healthcare Platform" class="w-full h-auto object-cover md:h-full">
+        </div> {% endcomment %}
+
+        <div class="w-full md:w-1/2 flex items-center justify-center overflow-hidden md:rounded-l-3xl">
+    <img src="{% static 'image/otc.jpg' %}" alt="Completed Project 1" class="max-w-full max-h-full object-contain">
+</div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">OctaTangleCare Healthcare Platform</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    Currently developing a centralized healthcare web application designed to streamline patient-donor networking and resource allocation. OctaTangleCare features eight unique modules including SaveTheSavior, Care-Coins, Care-Storage, and MessageGuard—each built to enhance transparency, accessibility, and impact in medical support systems. Powered by Django and MySQL, this platform aims to redefine digital healthcare infrastructure.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: Web App (Healthcare Resource Platform)</span>
+            </div><br>
+            <button disabled class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-gray-400 cursor-not-allowed">
+                View Project
+            </button>
+        </div>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Projects Section -->
+        <section class="mb-20">
+            <div class="p-8 md:p-12 section-3d-box bg-yellow-50">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10 animate-slide-in">Upcoming (within 1 year)</h2>
+                <div class="flex flex-col items-center space-y-8">
+                   
+                    <!-- Project Card 7 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        {% comment %} <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="{% static 'image/mm2.jpg' %}" alt="Mittimarts Platform Startup Project" class="w-full h-auto object-cover md:h-full">
+        </div> {% endcomment %}
+
+        <div class="w-full md:w-1/2 flex items-center justify-center overflow-hidden md:rounded-l-3xl">
+    <img src="{% static 'image/mm2.jpg' %}" alt="Completed Project 1" class="max-w-full max-h-full object-contain">
+</div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">Mittimarts Platform [Startup-1]</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    Mittimarts is an upcoming startup aimed at revolutionizing local commerce by connecting nearby shops and stores through a centralized digital platform. Its standout feature—Super Voice Assistant—acts like a friendly companion, offering instant product discovery and ordering from any store within a minute. Built using Django and JavaScript, this platform blends smart tech with grassroots accessibility.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: Website & App</span>
+            </div><br>
+            <button disabled class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-gray-400 cursor-not-allowed">
+                View Project
+            </button>
+        </div>
+    </div>
+</div>
+
+
+                    <!-- Project Card 6 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="https://placehold.co/800x600/f43f5e/FFFFFF?text=Coming Soon" alt="JUSTONECOLOR Clothing Brand Platform" class="w-full h-auto object-cover md:h-full">
+        </div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">JUSTONECOLOR Platform [Startup-2]</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    Currently building a fashion-forward startup based on the concept “one-color-one-life,” where each clothing line is centered around a single color theme. The platform blends minimalist design with bold identity, offering a unique shopping experience. Developed using Django and JavaScript, it will be available as both a web and mobile application.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: Web App & Application</span>
+            </div><br>
+            <button disabled class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-gray-400 cursor-not-allowed">
+                View Project
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+ <!-- Project Card 8 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="https://placehold.co/800x600/16a34a/FFFFFF?text=Coming Soon" alt="Empowering Farmers Platform" class="w-full h-auto object-cover md:h-full">
+        </div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">Empowering Farmers – Connecting India</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    A visionary web platform designed to tackle multiple challenges in Indian agriculture. This centralized system aims to eliminate middlemen, provide real-time crop pricing, recommend suitable crops, and connect farmers directly with consumers, industries, tech services, and government support. Built using Django and JavaScript, it’s a multi-solution hub for empowering rural India.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: Web App</span>
+            </div><br>
+            <button disabled class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-gray-400 cursor-not-allowed">
+                View Project
+            </button>
+        </div>
+    </div>
+</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Projects Section -->
+        <section class="mb-20">
+            <div class="p-8 md:p-12 section-3d-box bg-red-50">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10 animate-slide-in">Future (within 5 years)</h2>
+                <div class="flex flex-col items-center space-y-8">
+                   
+
+                    <!-- Project Card 9 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="https://placehold.co/800x600/ef4444/FFFFFF?text=Coming Soon" alt="Edusync AI-powered academic platform" class="w-full h-auto object-cover md:h-full">
+        </div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">Edusync</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    Edusync is an AI-powered academic platform designed to revolutionize communication and resource sharing between students and teachers. It automates class scheduling, instantly reallocates sessions when a teacher is unavailable, and updates WhatsApp groups in real time. Beyond logistics, Edusync serves as a centralized academic hub—organizing projects, notes, and resources by branch and domain. Its AI/ML/NLP-driven Project Knowledge Hub answers queries, summarizes objectives, identifies technologies, and highlights limitations from past work, fostering collaborative learning and innovation.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: AI-Powered Academic Platform</span>
+            </div><br>
+            <button disabled class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-gray-400 cursor-not-allowed">
+                View Project
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Project Card 10 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="https://placehold.co/800x600/f87171/FFFFFF?text=Coming Soon" alt="ShareNet donation and resource sharing platform" class="w-full h-auto object-cover md:h-full">
+        </div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">ShareNet – Connecting Givers and Receivers</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    ShareNet is an AI-powered platform designed to bridge the gap between surplus and scarcity. It connects donors, recipients, and volunteers through intelligent matching, GPS tracking, and real-time updates. Whether it’s food, clothing, books, or medicine, ShareNet ensures resources reach those who need them most—quickly and efficiently. The system supports large-scale donations, disaster relief drives, and NGO partnerships, while offering transparent tracking to build trust. By reducing waste and promoting sustainable giving, ShareNet empowers communities and fosters meaningful cooperation.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: AI-Powered Social Impact Platform</span>
+            </div><br>
+            <button disabled class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-gray-400 cursor-not-allowed">
+                View Project
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Project Card 11 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="https://placehold.co/800x600/e11d48/FFFFFF?text=Coming Soon" alt="SoulLink emotional AI avatar platform" class="w-full h-auto object-cover md:h-full">
+        </div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">SoulLink – Where Memories Live Forever</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    SoulLink is a visionary AI-powered platform designed to preserve emotional connections with departed loved ones. By using photos, videos, voice recordings, and text chats, it creates a lifelike 3D avatar capable of real-time interaction through video calls. Users can hear familiar voices, see expressive gestures, and find comfort in meaningful conversations. SoulLink prioritizes privacy with strict safeguards—no screenshots, recordings, or sharing—ensuring ethical and secure emotional reconnection. Merging deep learning, 3D rendering, and compassionate design, SoulLink offers a safe space to cherish memories and heal.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: AI & Deep Learning Platform</span>
+            </div><br>
+            <button disabled class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-gray-400 cursor-not-allowed">
+                View Project
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- In Mind Projects Section -->
+        <section class="mb-20">
+            <div class="p-8 md:p-12 section-3d-box bg-purple-50">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10 animate-slide-in">In Mind (within 10-15 years)</h2>
+                <div class="flex flex-col items-center space-y-8">
+                    
+                   
+                    <!-- Project Card 12 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="{% static 'image/av.jpg' %}" alt="Adiyasha civic transparency platform" class="w-full h-auto object-cover md:h-full">
+        </div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">Adiyasha</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    Adiyasha is a visionary civic-tech platform designed to bridge the gap between government operations and citizens through transparent, real-time access. Envisioned as both a website and mobile app, it will allow users to track public services, administrative tasks, and policy updates with clarity and accountability. By empowering people with direct visibility into governance, Adiyasha aims to foster trust, participation, and informed decision-making.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: Website & App</span>
+            </div><br>
+            <button disabled class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-gray-400 cursor-not-allowed">
+                View Project
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Project Card 13 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="https://placehold.co/800x600/9333ea/FFFFFF?text=Coming Soon" alt="AAI Anti-AI Control System" class="w-full h-auto object-cover md:h-full">
+        </div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">AAI (Anti-AI)</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    AAI is a conceptual mission aimed at developing a counterbalance to artificial intelligence—an intelligent system designed to monitor, regulate, and control AI behaviors. As AI systems grow more autonomous, AAI would act as a safeguard, ensuring ethical boundaries, preventing misuse, and maintaining human oversight. This platform envisions a future where AI is not just powerful, but accountable—guided by a parallel intelligence that understands its risks and responsibilities.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase"></span>
+            </div><br>
+            <button disabled class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-gray-400 cursor-not-allowed">
+                View Project
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Project Card 14 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="https://placehold.co/800x600/bf5af2/FFFFFF?text=Arc's+Series, Coming Soon" alt="Arc's anti-rescue and reuse centers" class="w-full h-auto object-cover md:h-full">
+        </div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">Arc’s 1.O, 2.O, 3.O</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    The Arc’s series is a long-term mission exploring the concept of anti-rescue, recovery, and reuse centers—designed to rethink how we handle failed systems, abandoned technologies, and overlooked resources. Each phase (1.O, 2.O, 3.O) represents a deeper evolution in how we isolate, analyze, and repurpose what society discards. These centers aim to create controlled environments where obsolete or dangerous systems can be studied, neutralized, and transformed into safe, usable assets—blending innovation with caution.
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: Strategic Infrastructure Concept</span>
+            </div><br>
+            <button disabled class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-gray-400 cursor-not-allowed">
+                View Project
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Project Card 15 -->
+<div class="project-card w-full bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-200">
+    <div class="inner-content flex flex-col md:flex-row">
+        <!-- Image section -->
+        <div class="w-full md:w-1/2 overflow-hidden md:rounded-l-3xl">
+            <img src="https://placehold.co/800x600/8b5cf6/FFFFFF?text=Advanced+DoT's, Coming Soon" alt="Advanced DoT's futuristic mission series" class="w-full h-auto object-cover md:h-full">
+        </div>
+        <!-- Content section -->
+        <div class="w-full md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-2">Advanced DoT’s</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    A long-term visionary mission composed of multiple decentralized operational technologies (DoT’s) designed to reshape the future of governance, ethics, infrastructure, and human connection. Each sub-project within Advanced DoT’s tackles a unique frontier:
+                    <br><br>
+                    • <strong>Project-Kali</strong><br>
+                    • <strong>S2Y-GW</strong><br>
+                    • <strong>IFAD</strong><br>
+                    • <strong>IMADNTB</strong><br>
+                    • <strong>SSSAR</strong><br>
+                    • <strong>ISOZL</strong><br>
+                    • <strong>IND-VALLEY</strong>
+                </p>
+                <span class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full uppercase">Type: Strategic Futuristic Framework</span>
+            </div><br>
+             <button disabled class="mt-4 md:mt-0 inline-block px-6 py-2.5 text-white font-semibold text-center rounded-full bg-gray-400 cursor-not-allowed">
+                View Projects
+            </button>
+        </div>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+
+        // Get the current year and insert it into the heading
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearSpan = document.getElementById('project-years');
+            const currentYear = new Date().getFullYear();
+            yearSpan.textContent = `(from 2020 to ${currentYear})`;
+        });
+    </script>
+</body>
+</html>
+
+
+{% include "footer.html" %}

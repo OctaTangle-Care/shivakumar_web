@@ -1,0 +1,327 @@
+{% include "header.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills Web Page</title>
+  <style>
+    
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      margin-top: 250px;
+      padding: 0;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-top: 30px;
+      color: #222;
+    }
+
+    p.tagline {
+      text-align: center;
+      font-size: 1.2em;
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      margin-top: 80px;
+      text-align: center;
+      color: #444;
+      font-size: 1.8em;
+    }
+
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 30px 60px;
+    }
+
+    .skill-card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    .skill-card img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 15px;
+    }
+
+    .skill-name {
+      color: black;
+      font-size: 1.1em;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .progress-bar {
+      width: 100%;
+      background: #eee;
+      border-radius: 20px;
+      height: 12px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress {
+      height: 100%;
+      border-radius: 20px;
+      width: 0;
+      background: linear-gradient(90deg, #6a11cb, #2575fc);
+      animation: loadProgress 2s forwards;
+    }
+
+    @keyframes loadProgress {
+      from { width: 0; }
+      to { width: var(--progress); }
+    }
+
+    .proficiency {
+      margin-top: 8px;
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    /* Responsive Grid */
+    @media (max-width: 768px) {
+      .skills-container {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 2em; }
+      h2 { font-size: 1.4em; }
+      .skills-container { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>My Skills</h1>
+  <p class="tagline">"Exploring, learning, and mastering technology step by step"</p>
+
+  <!-- Programming Languages -->
+  <h2>Programming Languages</h2>
+  <div class="skills-container">
+      <div class="skill-card">
+      <img src="https://tse4.mm.bing.net/th/id/OIP.-wK8kSbegCP7kdE8hVjRCQHaHk?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Ruby">
+      <div class="skill-name">C</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 40%;"></div></div>
+      <div class="proficiency">medium (50%)</div>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python">
+      <div class="skill-name">Python</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 80%;"></div></div>
+      <div class="proficiency">Advanced (80%)</div>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/226/226777.png" alt="Java">
+      <div class="skill-name">Java</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 60%;"></div></div>
+      <div class="proficiency">Medium (60%)</div>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/6132/6132221.png" alt="C#">
+      <div class="skill-name">C#</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 50%;"></div></div>
+      <div class="proficiency">Basics (50%)</div>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript">
+      <div class="skill-name">JavaScript</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 70%;"></div></div>
+      <div class="proficiency">Medium (70%)</div>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/919/919842.png" alt="Ruby">
+      <div class="skill-name">Ruby</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 40%;"></div></div>
+      <div class="proficiency">Basics (25%)</div>
+    </div>
+  </div>
+
+  <!-- Web Technologies -->
+  <h2>Web Technologies (Full-Stack)</h2>
+  <div class="skills-container">
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML">
+      <div class="skill-name">HTML</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 85%;"></div></div>
+      <div class="proficiency">Pro (85%)</div>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS">
+      <div class="skill-name">CSS</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 80%;"></div></div>
+      <div class="proficiency">Advanced (80%)</div>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JS">
+      <div class="skill-name">JavaScript</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 70%;"></div></div>
+      <div class="proficiency">Medium (70%)</div>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/919/919852.png" alt="Django">
+      <div class="skill-name">Django</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 60%;"></div></div>
+      <div class="proficiency">Advanced (80%)</div>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/919/919836.png" alt="MySQL">
+      <div class="skill-name">MySQL</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 65%;"></div></div>
+      <div class="proficiency">Medium (65%)</div>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/5815/5815457.png" alt="SQL">
+      <div class="skill-name">SQL</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 70%;"></div></div>
+      <div class="proficiency">Medium (70%)</div>
+    </div>
+  </div>
+
+  <!-- App Tech -->
+  <h2>App Technologies</h2>
+  <div class="skills-container">
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/6132/6132221.png" alt="C#">
+      <div class="skill-name">C# (Desktop Apps)</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 50%;"></div></div>
+      <div class="proficiency">Basics (50%)</div>
+    </div>
+     <div class="skill-card">
+      <img src="https://tse3.mm.bing.net/th/id/OIP.Kq-PcEWUihVX4Pd1HxVukwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="C#">
+      <div class="skill-name">Flutter</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 50%;"></div></div>
+      <div class="proficiency">Basics (30%)</div>
+    </div>
+  </div>
+
+  <!-- Modern Tech -->
+  <h2>Modern Technologies</h2>
+  <div class="skills-container">
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" alt="ML">
+      <div class="skill-name">Machine Learning</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 65%;"></div></div>
+      <div class="proficiency">Medium (65%)</div>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/10169/10169833.png" alt="DL">
+      <div class="skill-name">Deep Learning</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 55%;"></div></div>
+      <div class="proficiency">Basics (55%)</div>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/1048/1048934.png" alt="NLP">
+      <div class="skill-name">NLP</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 50%;"></div></div>
+      <div class="proficiency">Basics (50%)</div>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/128/5278/5278402.png" alt="AI">
+      <div class="skill-name">Artificial Intelligence</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 60%;"></div></div>
+      <div class="proficiency">Medium (60%)</div>
+    </div>
+  </div>
+
+  <!-- Tools -->
+  <h2>Tools</h2>
+  <div class="skills-container">
+    <div class="skill-card"><img src="https://www.bing.com/th/id/OIP.TDetPyHzgNFKJt2CLzIx9AHaHa?w=184&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="VS Code"><div class="skill-name">VS Code</div><div class="progress-bar"><div class="progress" style="--progress: 90%;"></div></div><div class="proficiency">Master (90%)</div></div>
+     <div class="skill-card"><img src="https://www.bing.com/th/id/OIP.ICfAdXYdKoA0BVUouzrMQgHaHa?w=206&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="VS Code"><div class="skill-name">Anaconda IDE</div><div class="progress-bar"><div class="progress" style="--progress: 90%;"></div></div><div class="proficiency">Master (90%)</div></div>
+    <div class="skill-card"><img src="https://www.bing.com/th/id/OIP.nFy0ix4DsE80Jl8ofLUPXwHaHa?w=184&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="Visual Studio"><div class="skill-name">Visual Studio 2020</div><div class="progress-bar"><div class="progress" style="--progress: 70%;"></div></div><div class="proficiency">Medium (70%)</div></div>
+    <div class="skill-card"><img src="https://www.bing.com/th/id/OIP.fAu1cs_4WnG34ifZEJ710QHaHV?w=197&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" alt="PyCharm"><div class="skill-name">PyCharm</div><div class="progress-bar"><div class="progress" style="--progress: 80%;"></div></div><div class="proficiency">Advanced (80%)</div></div>
+    <div class="skill-card"><img src="https://th.bing.com/th/id/OIP.Bn516uD_aGSsndnfO8bqdgHaD4?w=324&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3g" alt="Jupyter"><div class="skill-name">Jupyter</div><div class="progress-bar"><div class="progress" style="--progress: 75%;"></div></div><div class="proficiency">Pro (75%)</div></div>
+  </div>
+
+  <!-- Soft Skills -->
+  <h2>Soft Skills</h2>
+  <div class="skills-container">
+    <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/128/901/901163.png" alt="Communication">
+      <div class="skill-name">Communication</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 85%;"></div></div>
+      <div class="proficiency">Medium (55%)</div>
+    </div>
+
+     <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/128/10262/10262344.png" alt="Communication">
+      <div class="skill-name">Critical thinking</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 85%;"></div></div>
+      <div class="proficiency">Advanced (85%)</div>
+    </div>
+
+
+
+     <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/128/2857/2857527.png" alt="Communication">
+      <div class="skill-name">Creativity</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 85%;"></div></div>
+      <div class="proficiency">Advanced (85%)</div>
+    </div>
+
+
+
+     <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/128/10789/10789881.png" alt="Communication">
+      <div class="skill-name">Flexibility</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 85%;"></div></div>
+      <div class="proficiency">Medium (65%)</div>
+    </div>
+
+     <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/128/7966/7966954.png" alt="Communication">
+      <div class="skill-name">Decision-making</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 85%;"></div></div>
+      <div class="proficiency">Advanced (95%)</div>
+    </div>
+     <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/128/13659/13659314.png" alt="Communication">
+      <div class="skill-name">Willingness to learn</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 85%;"></div></div>
+      <div class="proficiency">Advanced (80%)</div>
+    </div>
+
+     <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/128/10285/10285070.png" alt="Communication">
+      <div class="skill-name">Empathy</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 85%;"></div></div>
+      <div class="proficiency">Advanced (90%)</div>
+    </div>
+
+ <div class="skill-card">
+      <img src="https://cdn-icons-png.flaticon.com/128/5554/5554936.png" alt="Communication">
+      <div class="skill-name">Positive attitude</div>
+      <div class="progress-bar"><div class="progress" style="--progress: 85%;"></div></div>
+      <div class="proficiency">Medium (75%)</div>
+    </div>
+  </div>
+
+</body>
+</html>
+
+
+{% include "footer.html" %}

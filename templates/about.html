@@ -1,0 +1,435 @@
+
+{% load static %}
+{% include "header.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+
+    <!-- Tailwind CSS CDN for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts for a professional look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom styles for animations and layout */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1F2937;
+            overflow-x: hidden; /* Prevents horizontal scroll from animations */
+            margin-top:40px;
+        }
+
+        /* Hero section animation */
+        .animate-slide-in-right {
+            animation: slideInRight 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-slide-in-left {
+            animation: slideInLeft 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Timeline specific styles */
+        .timeline-container {
+            position: relative;
+        }
+
+        /* The main vertical line */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 1.5rem; /* Left-aligned on mobile */
+            width: 4px;
+            background-color: #E5E7EB;
+            z-index: 0;
+            height: 100%;
+        }
+
+        /* Main line for desktop */
+        @media (min-width: 768px) {
+            .timeline-container::before {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .timeline-item {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Timeline dot with a shiny pulse effect */
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #2563EB;
+            border: 4px solid #D1D5DB;
+            position: absolute;
+            left: 1.5rem; /* Left-aligned on mobile */
+            transform: translateX(-50%);
+            top: 50%;
+            transition: transform 0.3s ease-in-out;
+            /* Added a persistent, subtle shadow for the 'shined' effect */
+            box-shadow: 0 0 8px rgba(37, 99, 235, 0.8), 0 0 0 0 rgba(37, 99, 235, 0.6);
+            /* This animation will now run on both desktop and mobile */
+            animation: pulse-ring 2s infinite;
+        }
+
+        /* Timeline dot for desktop */
+        @media (min-width: 768px) {
+            .timeline-dot {
+                left: 50%;
+            }
+        }
+
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 8px rgba(37, 99, 235, 0.8), 0 0 0 0 rgba(37, 99, 235, 0.6); }
+            100% { box-shadow: 0 0 8px rgba(37, 99, 235, 0.8), 0 0 0 20px rgba(37, 99, 235, 0); }
+        }
+
+        /* Timeline content animation */
+        .timeline-content {
+            animation: fadeInScale 0.8s ease-in-out forwards;
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Animate the line drawing */
+        .timeline-line-fill {
+            position: absolute;
+            top: 0;
+            left: 1.5rem; /* Left-aligned on mobile */
+            width: 4px;
+            background-color: #2563EB;
+            height: 0;
+            transition: height 1s linear;
+        }
+        
+        /* Line fill for desktop */
+        @media (min-width: 768px) {
+            .timeline-line-fill {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <!-- Header Section -->
+    <header class="text-center py-16 px-4">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 mb-4 animate-[fadeIn_1.5s_ease-out_forwards]">
+            My Journey <span id="journey-years" class="text-blue-600"></span>
+        </h1>
+    </header>
+
+    <main class="container mx-auto px-4 md:px-8">
+
+        <!-- About Me Section -->
+        <section class="mb-20">
+            <div class="flex flex-col-reverse md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12">
+                <!-- Text Content (Left) -->
+                <div class="w-full md:w-1/2 text-center md:text-left p-6 md:p-0 animate-slide-in-left">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                        Shivakumar Akula
+                    </h2>
+                    <p class="text-md text-gray-600 leading-relaxed max-w-lg mx-auto md:mx-0">
+                        I am an aspiring entrepreneur with a passion for technology and innovation. My journey is one of continuous learning, from my early days in school to my current pursuit of a B.Tech in Computer Science. I believe in building meaningful projects that solve real-world problems.
+                    </p>
+                </div>
+                <!-- Photo with Animation (Right) -->
+                <div class="w-full md:w-1/2 flex justify-center md:justify-end animate-slide-in-right">
+                    <img src="{% static 'image/shiva.jpeg' %}" alt="My Photo" class="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover shadow-2xl transition-all duration-500 ease-in-out transform hover:scale-105 hover:rotate-3">
+                </div>
+            </div>
+        </section>
+
+        <!-- Basic Information Section -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-800 text-center mb-10 animate-slide-in-left">Basic Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-slide-in-right">
+                <!-- DOB Card -->
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200 transition-transform duration-300 hover:scale-105">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-1">Date of Birth</h3>
+                    <p class="text-gray-600">07/07/2005</p>
+                </div>
+                <!-- Phone Card -->
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200 transition-transform duration-300 hover:scale-105">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-1">Phone Number</h3>
+                    <p class="text-gray-600">9390370155</p>
+                </div>
+                <!-- Email Card -->
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200 transition-transform duration-300 hover:scale-105">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-1">Email</h3>
+                    {% comment %} <p class="text-gray-600">akulashivaakulashiva@gmail.com</p> {% endcomment %}
+                <p class="text-gray-600 break-words overflow-hidden text-ellipsis max-w-full">akulashivaakulashiva@gmail.com</p>
+                </div>
+                <!-- Address Card -->
+                <div class="bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200 transition-transform duration-300 hover:scale-105">
+                    <h3 class="font-semibold text-lg text-gray-900 mb-1">Address</h3>
+                    <p class="text-gray-600">Manthani, Telangana 505184</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Life Flow / Timeline Section -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-gray-800 text-center mb-10 animate-slide-in-left">Life Flow</h2>
+            <div class="timeline-container px-4">
+                <div class="timeline-line-fill"></div>
+                
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item flex justify-end md:justify-start mb-12 animate-slide-in-right">
+                    <div class="timeline-dot"></div>
+                    <div class="w-full md:w-1/2 p-6 md:pr-12 md:text-right text-gray-600 timeline-content">
+                        <div class="flex items-center mb-2 justify-end md:justify-start">
+                            <img src="https://placehold.co/80x80/6366F1/FFFFFF?text=2005" alt="2005-2009" class="w-12 h-12 rounded-lg mr-4 border-2 border-indigo-500">
+                            <span class="font-bold text-lg text-gray-900">2005 - 2009</span>
+                        </div>
+                        <p>Just chilling. The carefree days of early childhood.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="timeline-item flex justify-end md:justify-end mb-12 animate-slide-in-left">
+                    <div class="timeline-dot"></div>
+                    <div class="w-full md:w-1/2 p-6 md:pl-12 text-gray-600 timeline-content">
+                        <div class="flex items-center mb-2 md:justify-end">
+                            <span class="font-bold text-lg text-gray-900">2009 - 2012</span>
+                            <img src="https://placehold.co/80x80/EF4444/FFFFFF?text=2009" alt="2009-2012" class="w-12 h-12 rounded-lg ml-4 border-2 border-red-500">
+                        </div>
+                        <p>1st and 2nd class in private school.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="timeline-item flex justify-end md:justify-start mb-12 animate-slide-in-right">
+                    <div class="timeline-dot"></div>
+                    <div class="w-full md:w-1/2 p-6 md:pr-12 md:text-right text-gray-600 timeline-content">
+                        <div class="flex items-center mb-2 justify-end md:justify-start">
+                            <img src="https://placehold.co/80x80/F59E0B/FFFFFF?text=2012" alt="2012-2015" class="w-12 h-12 rounded-lg mr-4 border-2 border-amber-500">
+                            <span class="font-bold text-lg text-gray-900">2012 - 2015</span>
+                        </div>
+                        <p>3rd, 4th, and 5th class in a government school.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 4 -->
+                <div class="timeline-item flex justify-end md:justify-end mb-12 animate-slide-in-left">
+                    <div class="timeline-dot"></div>
+                    <div class="w-full md:w-1/2 p-6 md:pl-12 text-gray-600 timeline-content">
+                        <div class="flex items-center mb-2 md:justify-end">
+                            <span class="font-bold text-lg text-gray-900">2015 - 2017</span>
+                            <img src="https://placehold.co/80x80/10B981/FFFFFF?text=2015" alt="2015-2017" class="w-12 h-12 rounded-lg ml-4 border-2 border-emerald-500">
+                        </div>
+                        <p>6th to 8th grade at TS Model School, a government institution.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 5 -->
+                <div class="timeline-item flex justify-end md:justify-start mb-12 animate-slide-in-right">
+                    <div class="timeline-dot"></div>
+                    <div class="w-full md:w-1/2 p-6 md:pr-12 md:text-right text-gray-600 timeline-content">
+                        <div class="flex items-center mb-2 justify-end md:justify-start">
+                            <img src="https://placehold.co/80x80/3B82F6/FFFFFF?text=2017" alt="2017-2020" class="w-12 h-12 rounded-lg mr-4 border-2 border-blue-500">
+                            <span class="font-bold text-lg text-gray-900">2017 - 2020</span>
+                        </div>
+                        <p>Completed 9th and 10th grade with a 100% pass rate.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 6 -->
+                <div class="timeline-item flex justify-end md:justify-end mb-12 animate-slide-in-left">
+                    <div class="timeline-dot"></div>
+                    <div class="w-full md:w-1/2 p-6 md:pl-12 text-gray-600 timeline-content">
+                        <div class="flex items-center mb-2 md:justify-end">
+                            <span class="font-bold text-lg text-gray-900">2020 - 2023</span>
+                            <img src="https://placehold.co/80x80/9333EA/FFFFFF?text=2020" alt="2020-2023" class="w-12 h-12 rounded-lg ml-4 border-2 border-purple-500">
+                        </div>
+                        <p>Earned a Diploma in Computer Science at Government Polytechnic College in Siddipet. And started entrepreneurship</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 7 -->
+                <div class="timeline-item flex justify-end md:justify-start mb-12 animate-slide-in-right">
+                    <div class="timeline-dot"></div>
+                    <div class="w-full md:w-1/2 p-6 md:pr-12 md:text-right text-gray-600 timeline-content">
+                        <div class="flex items-center mb-2 justify-end md:justify-start">
+                            <img src="https://placehold.co/80x80/E11D48/FFFFFF?text=2023" alt="2023-2024" class="w-12 h-12 rounded-lg mr-4 border-2 border-rose-500">
+                            <span class="font-bold text-lg text-gray-900">2023 - 2024</span>
+                        </div>
+                        <p>Completed my 2nd year of B.Tech at JNTUH, Manthani.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 8 (Current) -->
+                <div class="timeline-item flex justify-end md:justify-end mb-12 animate-slide-in-left">
+                    <div class="timeline-dot"></div>
+                    <div class="w-full md:w-1/2 p-6 md:pl-12 text-gray-600 timeline-content">
+                        <div class="flex items-center mb-2 md:justify-end">
+                            <span class="font-bold text-lg text-gray-900">2024 - Present</span>
+                            <img src="https://placehold.co/80x80/FBBF24/FFFFFF?text=2024" alt="2024-Present" class="w-12 h-12 rounded-lg ml-4 border-2 border-amber-400">
+                        </div>
+                        <p>Currently in my final year, working on exciting new projects.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+       
+<!-- Free Time Section -->
+<section class="mb-20">
+    <h2 class="text-3xl font-bold text-gray-800 text-center mb-10 animate-slide-in-left">
+        Free Time & Hobbies
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 animate-slide-in-right">
+        
+       
+        <div class="bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200 text-center transition-transform duration-300 hover:scale-105">
+            <div class="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full flex items-center justify-center bg-white">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.I5dzMcmLdPqefK4-yDsh2gHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Movies Icon" class="max-w-full max-h-full object-contain transition-all duration-300 hover:rotate-6">
+            </div>
+            <h3 class="font-semibold text-lg text-gray-900">Movies</h3>
+            <p class="text-sm text-gray-600">Watching films and exploring new genres.</p>
+        </div>
+
+        <!-- Chilling with Family -->
+        <div class="bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200 text-center transition-transform duration-300 hover:scale-105">
+            <div class="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full flex items-center justify-center bg-white">
+                <img src="https://static.vecteezy.com/system/resources/previews/007/685/795/non_2x/family-with-children-eating-in-ice-cream-parlor-or-cafeteria-summer-restaurant-visitors-enjoying-chilling-drinks-and-food-leisure-and-recreation-concert-flat-illustration-isolated-free-vector.jpg" alt="Family Icon" class="max-w-full max-h-full object-contain transition-all duration-300 hover:scale-110">
+            </div>
+            <h3 class="font-semibold text-lg text-gray-900">Chilling with Family</h3>
+            <p class="text-sm text-gray-600">Spending quality time with my loved ones.</p>
+        </div>
+
+        <!-- Exploring Tech -->
+        <div class="bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200 text-center transition-transform duration-300 hover:scale-105">
+            <div class="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full flex items-center justify-center bg-white">
+                <img src="https://www.hhblife.com/wp-content/uploads/2023/02/Image.jpg" alt="Tech Icon" class="max-w-full max-h-full object-contain transition-all duration-300 hover:-rotate-6">
+            </div>
+            <h3 class="font-semibold text-lg text-gray-900">Exploring Tech</h3>
+            <p class="text-sm text-gray-600">Learning about the latest gadgets and software.</p>
+        </div>
+
+        <!-- Playing Games -->
+        <div class="bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200 text-center transition-transform duration-300 hover:scale-105">
+            <div class="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full flex items-center justify-center bg-white">
+                <img src="https://cdn-icons-png.flaticon.com/512/2274/2274778.png" alt="Gaming Icon" class="max-w-full max-h-full object-contain transition-all duration-300 hover:scale-110">
+            </div>
+            <h3 class="font-semibold text-lg text-gray-900">Playing Games</h3>
+            <p class="text-sm text-gray-600">Enjoying video games to relax and unwind.</p>
+        </div>
+
+        <!-- Music Listening -->
+        <div class="bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200 text-center transition-transform duration-300 hover:scale-105">
+            <div class="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full flex items-center justify-center bg-white">
+                <img src="https://www.creativefabrica.com/wp-content/uploads/2019/12/22/song-glyph-icon-vector-Graphics-1.jpg" alt="Music Icon" class="max-w-full max-h-full object-contain transition-all duration-300 hover:rotate-6">
+            </div>
+            <h3 class="font-semibold text-lg text-gray-900">Music Listening</h3>
+            <p class="text-sm text-gray-600">Finding new music to listen to.</p>
+        </div>
+
+        <!-- Idea Maker -->
+        <div class="bg-gray-50 p-6 rounded-2xl shadow-md border border-gray-200 text-center transition-transform duration-300 hover:scale-105">
+            <div class="w-24 h-24 mx-auto mb-4 overflow-hidden rounded-full flex items-center justify-center bg-white">
+                <img src="https://img.freepik.com/premium-vector/idea-development-icon-editable-vector-logo_965649-13795.jpg" alt="Ideas Icon" class="max-w-full max-h-full object-contain transition-all duration-300 hover:scale-110">
+            </div>
+            <h3 class="font-semibold text-lg text-gray-900">Idea Maker</h3>
+            <p class="text-sm text-gray-600">Identifying problems and brainstorming solutions.</p>
+        </div>
+
+    </div>
+</section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to set the dynamic year in the heading
+            function setDynamicYear() {
+                const yearSpan = document.getElementById('journey-years');
+                const currentYear = new Date().getFullYear();
+                yearSpan.textContent = `(2005 to ${currentYear})`;
+            }
+
+            setDynamicYear();
+            
+            // Intersection Observer for timeline line animation
+            const timelineContainer = document.querySelector('.timeline-container');
+            const timelineLineFill = document.querySelector('.timeline-line-fill');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2 // Adjust as needed to control when animation starts
+            };
+            
+            const timelineObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        timelineLineFill.style.height = `${entry.target.scrollHeight}px`;
+                    } else {
+                        timelineLineFill.style.height = '0';
+                    }
+                });
+            }, observerOptions);
+
+            if (timelineContainer && timelineLineFill) {
+                timelineObserver.observe(timelineContainer);
+            }
+
+            // Intersection Observer for timeline content animation
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const itemObserverOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5 // Adjust as needed
+            };
+
+            const itemObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const content = entry.target.querySelector('.timeline-content');
+                        if (content) {
+                            content.style.opacity = '1';
+                            content.style.transform = 'scale(1)';
+                        }
+                    }
+                });
+            }, itemObserverOptions);
+
+            timelineItems.forEach(item => {
+                itemObserver.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+{% include "footer.html" %}

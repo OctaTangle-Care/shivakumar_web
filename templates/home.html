@@ -1,0 +1,400 @@
+
+{% load static %}
+{% include "header.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Portfolio</title>
+    
+    <!-- Tailwind CSS CDN for utility-first styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts for typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@400;700&display=swap" rel="stylesheet"/>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <style>
+        /* A universal box-sizing rule for consistent layout */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Basic body styling with a light background and font families */
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            background-color: #f8f8f8; /* The requested off-white color */
+            color: #333;
+            scroll-behavior: smooth;
+            /* Prevents horizontal overflow caused by animations */
+            overflow-x: hidden;
+            padding-top: 5rem;
+            margin-top:150px;
+        }
+
+        /* Keyframe animations for various sections and elements */
+        @keyframes pulse-ring {
+            0%{box-shadow:0 0 0 0 rgba(255,255,255,0.6);}
+            100%{box-shadow:0 0 0 25px rgba(255,255,255,0);}
+        }
+        @keyframes slideInFromTop {
+            from{transform:translateY(-100%);}
+            to{transform:translateY(0);}
+        }
+        @keyframes slideInFromBottom {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Apply slide-in animations to specific elements */
+        .animate-slide-in-left {
+            animation: slideInLeft 1s ease-out forwards;
+        }
+        .animate-slide-in-right {
+            animation: slideInRight 1s ease-out forwards;
+        }
+        .pulse-button {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* 3D card and hover effects for interactivity */
+        .card-3d {
+            transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+            transform-style: preserve-3d;
+        }
+        .card-3d:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+        .project-card:hover .project-button {
+            background-color: #1d4ed8;
+            color: #fff;
+        }
+        .gallery-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .gallery-info {
+            position: absolute;
+            bottom: -100%; /* Initially hidden below */
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            transition: bottom 0.5s ease-in-out;
+        }
+        .gallery-image-container:hover .gallery-info {
+            bottom: 0;
+        }
+
+        /* Styles for hero section */
+        .hero-container {
+            background-color: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 5rem;
+            padding: 3rem;
+            position: relative;
+        }
+
+        /* Class for sections that will be animated on scroll */
+        .animated-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .animated-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Content Container -->
+    <main class="container mx-auto px-4">
+
+        <!-- Hero Section -->
+        <section id="hero" class="hero-container animated-section">
+            <div class="flex flex-col-reverse lg:flex-row items-center justify-between">
+                <!-- Text Content -->
+                <div class="w-full lg:w-1/2 text-center lg:text-left animate-slide-in-left">
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-widest mb-2">
+                        My life & work
+                    </p>
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
+                        Hi, I'm <span class="text-blue-600">Shivakumar Akula</span>
+                    </h1>
+                    <p class="text-xl font-light text-gray-700 leading-relaxed mb-8">
+                        Empowering startups and entrepreneurs with innovative web solutions.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="/update" class="bg-gray-200 text-gray-800 font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+                            Hire me
+                        </a>
+                        <button class="bg-white text-gray-600 font-semibold py-3 px-8 rounded-full shadow-md border border-gray-300 hover:shadow-lg transition-all duration-300">
+                            <a href="{% static 'image/Shiva_kumar_Software_Developer.pdf' %}" download="ShivaKumar_CV.pdf" >Download CV</a>
+                        </button>
+                    </div>
+                </div>
+                <!-- Image Content -->
+                <div class="w-full lg:w-1/2 flex justify-center lg:justify-end mt-8 lg:mt-0 animate-slide-in-right">
+                    <div class="w-56 h-56 md:w-64 md:h-64 relative">
+                        <div class="absolute inset-0 bg-blue-200 rounded-full transform scale-100 rotate-12 transition-transform duration-500 ease-out"></div>
+                        <div class="absolute inset-0 bg-gray-200 rounded-full transform -rotate-12 transition-transform duration-500 ease-out"></div>
+                        <img src="{% static 'image/shiva.jpeg' %}" alt="Shivakumar Akula" class="relative z-10 w-full h-full rounded-full object-cover border-4 border-white shadow-xl transform transition-transform duration-500 ease-out hover:scale-105">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="bg-white rounded-[40px] shadow-2xl p-8 lg:p-16 mb-20 animated-section">
+            <div class="flex flex-col lg:flex-row items-center justify-center space-y-8 lg:space-y-0 lg:space-x-16">
+                <!-- Image Content -->
+                {% comment %} <div class="w-full lg:w-1/3 flex justify-center">
+                    <img src="{% static 'image/stylepic.jpg' %}" alt="About Me Photo" class="w-64 h-64 md:w-80 md:h-80 rounded-[30px] shadow-xl transform rotate-3 transition-transform duration-500 hover:-rotate-3">
+                </div> {% endcomment %}
+                <div class="w-full lg:w-1/3 flex justify-center items-center overflow-hidden">
+    <img src="{% static 'image/stylepic.jpg' %}" alt="About Me Photo" >
+</div>
+                <!-- Text Content -->
+                <div class="w-full lg:w-2/3 text-center lg:text-left">
+                    {% comment %} <p class="text-sm font-medium text-gray-500 uppercase tracking-widest mb-2">My Introduction</p> {% endcomment %}
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">About Me</h2>
+                    <p class="text-md text-gray-600 leading-relaxed mb-6">
+                       I'm Shivakumar Akula, a final-year B.Tech CSM student at JNTUH Manthani. I'm passionate about building user-friendly applications and websites, and I have hands-on experience with various technologies. I'm driven to create useful tools and have a strong interest in entrepreneurship and building projects that solve real-world problems.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700 font-medium">
+                        <p><i class="fas fa-user-circle text-blue-500 mr-2"></i> Name: Shivakumar Akula</p>
+                        <p><i class="fas fa-calendar-alt text-blue-500 mr-2"></i> Date of birth: 07/07/2005</p>
+                        <p><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i> Address: 2-1/4 keshnapalli, mutharam, peddapalli, Telangana 505184 </p>
+                        <p><i class="fas fa-envelope text-blue-500 mr-2"></i> Email: akulashivaakulashiva@gmail.com</p>
+                    </div>
+                    <div class="mt-6 flex flex-wrap justify-center lg:justify-start gap-4">
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-semibold shadow-inner">
+                            <i class="fas fa-music mr-2"></i>Music
+                        </span>
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-semibold shadow-inner">
+                            <i class="fas fa-plane-departure mr-2"></i>Travel
+                        </span>
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-semibold shadow-inner">
+                            <i class="fas fa-film mr-2"></i>Movie
+                        </span>
+                        <span class="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-semibold shadow-inner">
+                            <i class="fas fa-baseball-ball mr-2"></i>Sports
+                        </span>
+                    </div>
+                    <div class="text-center mt-12">
+                <a class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 pulse-button" href="/about"> 
+                    Explore more
+                </a>
+            </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-16 animated-section">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Gallery</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-image-container rounded-2xl overflow-hidden shadow-2xl card-3d">
+                    <img src="{% static 'image/mytom.jpg' %}" alt="Gallery Image 1" class="w-full h-auto">
+                    <div class="gallery-info text-center">
+                        <h3 class="font-bold text-lg">Keeti</h3>
+                        <p class="text-sm">My code savior and the only one who understands my code errors!</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 2 -->
+                <div class="gallery-image-container rounded-2xl overflow-hidden shadow-2xl card-3d">
+                    <img src="{% static 'image/client1.jpg' %}" alt="Gallery Image 2" class="w-full h-auto">
+                    <div class="gallery-info text-center">
+                        <h3 class="font-bold text-lg">First Client Project</h3>
+                        <p class="text-sm">It's an e-commerce website for their organic farming startup.</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 3 -->
+                <div class="gallery-image-container rounded-2xl overflow-hidden shadow-2xl card-3d">
+                    <img src="{% static 'image/client2.jpg' %}" alt="Gallery Image 3" class="w-full h-auto">
+                    <div class="gallery-info text-center">
+                        <h3 class="font-bold text-lg">2nd Client Project</h3>
+                        <p class="text-sm">It's basically Gnanow brand clothing for their business.</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 4 -->
+                <div class="gallery-image-container rounded-2xl overflow-hidden shadow-2xl card-3d">
+                    <img src="{% static 'image/ucp.jpg' %}" alt="Gallery Image 4" class="w-full h-auto">
+                    <div class="gallery-info text-center">
+                        <h3 class="font-bold text-lg">EH - Future</h3>
+                        <p class="text-sm">It's essentially a centralized platform for engineers to collaborate.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 pulse-button" href="/gallery"> 
+                    View More
+                </a>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16 animated-section">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Project Item 1 -->
+                <div class="project-card bg-white rounded-2xl shadow-xl p-6 text-center transition-all duration-300 transform hover:scale-105">
+                    <img src="{% static 'image/va.png' %}" alt="Project 1" class="project-image w-full h-auto rounded-lg mb-4 transition-transform duration-300">
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Simple Virtual Assistant</h3>
+                    <a  href="/update" class="project-button bg-blue-500 text-white py-2 px-6 rounded-full font-semibold transition-all duration-300" href="">
+                        View Project
+                    </a>
+                </div>
+                <!-- Project Item 2 -->
+                <div class="project-card bg-white rounded-2xl shadow-xl p-6 text-center transition-all duration-300 transform hover:scale-105">
+                    <img src="{% static 'image/sm.png' %}" alt="Project 2" class="project-image w-full h-auto rounded-lg mb-4 transition-transform duration-300">
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">SmartMart</h3>
+                    <a href="/update" class="project-button bg-blue-500 text-white py-2 px-6 rounded-full font-semibold transition-all duration-300" href="">
+                        View Project
+                    </a>
+                </div>
+                <!-- Project Item 3 -->
+                <div class="project-card bg-white rounded-2xl shadow-xl p-6 text-center transition-all duration-300 transform hover:scale-105">
+                    <img src="{% static 'image/arya.png' %}" alt="Project 3" class="project-image w-full h-auto rounded-lg mb-4 transition-transform duration-300">
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Arya Naturals</h3>
+                    <a href="/update" class="project-button bg-blue-500 text-white py-2 px-6 rounded-full font-semibold transition-all duration-300" href="">
+                        View Project
+                    </a>
+                </div>
+                <!-- Project Item 4 -->
+                <div class="project-card bg-white rounded-2xl shadow-xl p-6 text-center transition-all duration-300 transform hover:scale-105">
+                    <img src="{% static 'image/resultportal.png' %}" alt="Project 4" class="project-image w-full h-auto rounded-lg mb-4 transition-transform duration-300">
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Result Portal</h3>
+                    <a href="/update" class="project-button bg-blue-500 text-white py-2 px-6 rounded-full font-semibold transition-all duration-300" href="">
+                        View Project
+                    </a>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 pulse-button" href="/projects">
+                    Explore More
+                </a>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-16 animated-section">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Skill Item 1 -->
+                <div class="bg-white rounded-2xl shadow-xl p-6 text-center card-3d">
+                    <i class="fab fa-html5 text-6xl text-orange-600 mb-4"></i>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">HTML5</h3>
+                    <button class="bg-gray-200 text-gray-700 py-2 px-6 rounded-full font-semibold hover:bg-gray-300 transition-colors duration-300">
+                        {% comment %} Know More {% endcomment %}
+                    </button>
+                </div>
+                <!-- Skill Item 2 -->
+                <div class="bg-white rounded-2xl shadow-xl p-6 text-center card-3d">
+                    <i class="fab fa-css3-alt text-6xl text-blue-600 mb-4"></i>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">CSS3</h3>
+                    <button class="bg-gray-200 text-gray-700 py-2 px-6 rounded-full font-semibold hover:bg-gray-300 transition-colors duration-300">
+                        {% comment %} Know More {% endcomment %}
+                    </button>
+                </div>
+                <!-- Skill Item 3 -->
+                <div class="bg-white rounded-2xl shadow-xl p-6 text-center card-3d">
+                    <i class="fab fa-js-square text-6xl text-yellow-500 mb-4"></i>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">JavaScript</h3>
+                    <button class="bg-gray-200 text-gray-700 py-2 px-6 rounded-full font-semibold hover:bg-gray-300 transition-colors duration-300">
+                        {% comment %} Know More {% endcomment %}
+                    </button>
+                </div>
+                <!-- Skill Item 4 -->
+           <div class="bg-white rounded-2xl shadow-xl p-6 text-center card-3d">
+    <i class="fas fa-coffee text-6xl text-orange-500 mb-4"></i>
+    <h3 class="font-bold text-xl text-gray-900 mb-2">Java</h3>
+    <button class="bg-gray-200 text-gray-700 py-2 px-6 rounded-full font-semibold hover:bg-gray-300 transition-colors duration-300">
+        {% comment %} Know More {% endcomment %}
+    </button>
+</div>
+
+                
+            </div>
+             <div class="text-center mt-12">
+                <a class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300 pulse-button" href="/skill" > 
+                    Explore More
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Intersection Observer API to detect when sections are visible in the viewport
+            const sections = document.querySelectorAll('.animated-section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Triggers when 10% of the section is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add 'is-visible' class to trigger the animation
+                        entry.target.classList.add('is-visible');
+                        // Stop observing once the animation is triggered
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe each animated section on the page
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+{% include "footer.html" %}

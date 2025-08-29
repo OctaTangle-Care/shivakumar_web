@@ -1,0 +1,194 @@
+{% include "header.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .social-card {
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+    .social-card:hover {
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+    .form-animate input:focus, 
+    .form-animate textarea:focus {
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-orange-50 to-white text-gray-800 antialiased">
+
+  <div class="container mx-auto px-4 py-16 max-w-7xl">
+    
+    <!-- Title -->
+    <h1 class="text-4xl md:text-5xl font-extrabold text-center mt-8 mb-12 text-orange-600 relative">
+      <span class="relative z-10">Get in Touch</span>
+      <div class="absolute inset-x-0 bottom-[-15px] flex justify-center">
+        <div class="w-20 h-1 bg-orange-500 rounded-full"></div>
+      </div>
+    </h1>
+
+    <!-- Social Media Section -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+      
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/shivakumar-akula-227877333/" target="_blank" 
+         class="social-card bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center text-center">
+        <img src="https://placehold.co/300x180/0077B5/ffffff?text=LinkedIn+Preview" alt="LinkedIn" class="w-full h-28 object-cover">
+        <div class="p-4">
+          <i class="fab fa-linkedin text-2xl text-[#0077B5] mb-2"></i>
+          <h4 class="font-semibold text-gray-800">LinkedIn</h4>
+        </div>
+      </a>
+
+      <!-- Twitter (X) -->
+      <a href="https://x.com/shiva251268?s=09" target="_blank" 
+         class="social-card bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center text-center">
+        <img src="https://placehold.co/300x180/1DA1F2/ffffff?text=X+Preview" alt="X" class="w-full h-28 object-cover">
+        <div class="p-4">
+          <i class="fa-brands fa-x-twitter text-2xl text-[#1DA1F2] mb-2"></i>
+          <h4 class="font-semibold text-gray-800">X (Twitter)</h4>
+        </div>
+      </a>
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/9390370155" target="_blank" 
+         class="social-card bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center text-center">
+        <img src="https://placehold.co/300x180/25D366/ffffff?text=WhatsApp+Preview" alt="WhatsApp" class="w-full h-28 object-cover">
+        <div class="p-4">
+          <i class="fab fa-whatsapp text-2xl text-[#25D366] mb-2"></i>
+          <h4 class="font-semibold text-gray-800">WhatsApp</h4>
+        </div>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/arcs_dot_?igsh=MXR1Y3g0dXFjeWUydQ==" target="_blank" 
+         class="social-card bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center text-center">
+        <img src="https://placehold.co/300x180/C13584/ffffff?text=Instagram+Preview" alt="Instagram" class="w-full h-28 object-cover">
+        <div class="p-4">
+          <i class="fab fa-instagram text-2xl text-[#C13584] mb-2"></i>
+          <h4 class="font-semibold text-gray-800">Instagram</h4>
+        </div>
+      </a>
+
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/profile.php?id=100060903526730" target="_blank" 
+         class="social-card bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center text-center">
+        <img src="https://placehold.co/300x180/4267B2/ffffff?text=Facebook+Preview" alt="Facebook" class="w-full h-28 object-cover">
+        <div class="p-4">
+          <i class="fab fa-facebook text-2xl text-[#4267B2] mb-2"></i>
+          <h4 class="font-semibold text-gray-800">Facebook</h4>
+        </div>
+      </a>
+
+      <!-- GitHub -->
+      <a href="https://github.com/OctaTangle-Care" target="_blank" 
+         class="social-card bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center text-center">
+        <img src="https://placehold.co/300x180/333333/ffffff?text=GitHub+Preview" alt="GitHub" class="w-full h-28 object-cover">
+        <div class="p-4">
+          <i class="fab fa-github text-2xl text-gray-800 mb-2"></i>
+          <h4 class="font-semibold text-gray-800">GitHub</h4>
+        </div>
+      </a>
+
+       <!-- Email -->
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=akulashivaakulashiva@gmail.com" target="_blank" 
+         class="social-card bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center text-center">
+        <img src="https://placehold.co/300x180/333333/ffffff?text=Email+Preview" alt="email perview" class="w-full h-28 object-cover">
+        <div class="p-4">
+          <i class="fas fa-envelope text-2xl text-red-800 mb-2"></i>
+          <h4 class="font-semibold text-gray-800">Email</h4>
+        </div>
+      </a>
+
+    
+  <a href="https://t.me/Shiva12_3" target="_blank" 
+         class="social-card bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col items-center text-center">
+        <img src="https://placehold.co/300x180/1DA1F2/ffffff?text=X+Preview" alt="X" class="w-full h-28 object-cover">
+        <div class="p-4">
+          <i class="fa-brands fab fa-telegram text-2xl text-[#1DA1F2] mb-2"></i>
+          <h4 class="font-semibold text-gray-800">Telegram</h4>
+        </div>
+      </a>
+
+
+ 
+
+    
+
+
+    </section>
+
+    <!-- Office Address -->
+    <div class="bg-white p-8 rounded-2xl shadow-lg flex flex-col md:flex-row items-center justify-between mb-16 animate-floatUp">
+      <div class="text-center md:text-left md:w-1/2 mb-6 md:mb-0">
+        <h3 class="text-2xl font-bold text-orange-500 mb-4">Our Address</h3>
+        <p class="text-lg font-semibold">ShivaKumar </p>
+        <p class="text-gray-600">1-1/4 Keshnapalli, Mutharam, Manthani, Telangana 505184, India</p>
+        <p class="text-gray-600 mt-2">📧 <span class="text-orange-500">akulashivaakulashiva@gmail.com</span></p>
+        <p class="text-gray-600">📞 <span class="text-orange-500">+91 9390370155</span></p>
+      </div>
+      <div class="md:w-1/2 flex justify-center">
+        <img src="https://i.pinimg.com/originals/39/5e/0a/395e0a10b14070c666525dda380f8238.gif" alt="Office building" class="rounded-xl shadow-md w-full max-w-sm animate-[floatUp_4s_ease-in-out_infinite]">
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="bg-white p-8 rounded-2xl shadow-lg max-w-3xl mx-auto animate-floatUp">
+      <h3 class="text-2xl font-bold text-center text-orange-500 mb-6">Send us a message</h3>
+      <form method="post" class="form-animate space-y-4" action="{% url 'contactus' %}">
+        {% csrf_token %}
+        <input type="text" name="fullname" placeholder="Full Name" required class="w-full p-3 border rounded-xl focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition">
+        <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded-xl focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition">
+        <input type="tel" name="phone" placeholder="Phone Number" required class="w-full p-3 border rounded-xl focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition">
+        <input type="text" name="subject" placeholder="Subject" required class="w-full p-3 border rounded-xl focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition">
+        <textarea name="message" rows="5" placeholder="Message" required class="w-full p-3 border rounded-xl focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition"></textarea>
+        <div class="text-center">
+          <button type="submit" class="bg-orange-500 text-white font-semibold py-3 px-8 rounded-xl hover:bg-orange-600 transition transform hover:scale-105">
+            Send Message
+          </button>
+        </div>
+          {% if success %}
+    <p class="mt-4 text-green-600 text-center font-medium">
+        Your message has been sent successfully. We’ll get back to you soon!
+    </p>
+{% else %}
+    {% if error %}
+        <p class="mt-4 text-red-600 text-center font-medium">
+            Something went wrong while sending your message. Please try again later.
+        </p>
+    {% endif %}
+{% endif %}
+      </form>
+    </div>
+
+  </div>
+</body>
+</html>
+
+
+{% include "footer.html" %}

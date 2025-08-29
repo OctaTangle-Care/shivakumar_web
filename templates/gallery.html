@@ -1,0 +1,322 @@
+
+{% load static %}
+{% include "header.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Styled Gallery</title>
+
+    <!-- Tailwind CSS CDN for a powerful utility-first framework -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts for a modern, elegant font style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Base styles and custom animations for a dynamic feel */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffffff; /* White background */
+            color: #1a202c; /* Dark text for contrast */
+            overflow-x: hidden;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Keyframe for a smooth fade-in on page load */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Keyframe for a subtle card entry animation */
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card container animation on scroll */
+        .gallery-card {
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform, box-shadow;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        
+        /* A more pronounced hover effect with a vibrant border glow */
+        .gallery-card:hover {
+            transform: translateY(-10px) rotateX(2deg) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 0 0 4px rgba(0, 255, 255, 0.5); /* Lighter shadow for white background */
+            z-index: 10;
+        }
+
+        /* Animated border effect on hover */
+        .gallery-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            padding: 2px;
+            background: linear-gradient(45deg, #00BFFF, #8A2BE2);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .gallery-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Staggered animation classes for a smooth, sequential entry */
+        .animate-delay-100 { animation-delay: 100ms; }
+        .animate-delay-200 { animation-delay: 200ms; }
+        .animate-delay-300 { animation-delay: 300ms; }
+        .animate-delay-400 { animation-delay: 400ms; }
+        .animate-delay-500 { animation-delay: 500ms; }
+        .animate-delay-600 { animation-delay: 600ms; }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section with a subtle, animated background -->
+    <header class="relative flex items-center justify-center text-center py-20 md:py-24 bg-cover bg-center" 
+            style="background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9));">
+        <div class="relative z-10 text-gray-800 animate-slideInUp">
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-2 drop-shadow-lg">
+                Crafted by ShivaKumar Akula
+            </h1>
+            <p class="text-lg md:text-xl font-light text-gray-600">
+            Where code meets creativity, and every pixel tells a purpose.
+
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content Section: Dynamic Gallery Grid -->
+    {% comment %} <main class="container mx-auto px-4 py-16"> {% endcomment %}
+        {% comment %} <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"> {% endcomment %}
+            
+{% comment %}            
+<!-- Gallery Item 2 -->
+<div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/stylepic.jpg' %}" alt="A stylish photo pose" class="w-full h-80 object-cover transform scale-100 transition-transform duration-300">
+    <div class="p-6">
+        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Stylish Photography</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+            A personal portrait showcasing a confident and stylish pose, captured with dramatic lighting and a modern aesthetic.
+        </p>
+    </div>
+</div>
+           <!-- Gallery Item 2 -->
+<div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/coolpic.jpg' %}" alt="A stylish photo pose" class="w-full h-80 object-cover transform scale-100 transition-transform duration-300">
+    <div class="p-6">
+        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Stylish Photography</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+            A personal portrait showcasing a confident and stylish pose, captured with dramatic lighting and a modern aesthetic.
+        </p>
+    </div>
+</div>
+
+         <!-- Gallery Item 3 -->
+<div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/random_pic.jpg' %}" alt="Stylish white-on-white outfit" class="w-full h-80 object-cover transform scale-100 transition-transform duration-300">
+    <div class="p-6">
+        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Cool & Chill</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+            A relaxed yet fashion-forward look featuring a crisp white-on-white outfit, exuding effortless style and laid-back confidence.
+        </p>
+    </div>
+</div>
+
+<!-- Gallery Item 3 -->
+<div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/ww.jpg' %}" alt="Stylish white-on-white outfit" class="w-full h-80 object-cover transform scale-100 transition-transform duration-300">
+    <div class="p-6">
+        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Cool & Chill</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+            A relaxed yet fashion-forward look featuring a crisp white-on-white outfit, exuding effortless style and laid-back confidence.
+        </p>
+    </div>
+</div>
+
+<!-- Gallery Item 5 -->
+<div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/b.jpg' %}" alt="Stylish brown dog named Brownie" class="w-full h-80 object-cover transform scale-100 transition-transform duration-300">
+    <div class="p-6">
+        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Brownie</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+            Brownie, my stylish brown-coated dog, is the sharpest soul in my circle. With a smart gaze and a confident stride, he’s more than a pet—he’s the fashionable heartbeat of my everyday life.
+        </p>
+    </div>
+</div>
+<!-- Gallery Item 4 -->
+<div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/kate.jpg' %}" alt="My cat Kate beside a laptop" class="w-full h-80 object-cover transform scale-100 transition-transform duration-300">
+    <div class="p-6">
+        <h3 class="text-2xl font-semibold mb-2 text-gray-800">My Kate</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+            Meet Kate—my confident, code-savvy cat who lounges beside my laptop like she owns the IDE. She's my stress buster, debugging buddy, and the only one who truly understands when my logic breaks.
+        </p>
+    </div>
+</div>
+
+<!-- Gallery Item 6 -->
+<div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/s10.jpg' %}" alt="Suraksha 1.O IoT project device" class="w-full h-80 object-cover transform scale-100 transition-transform duration-300">
+    <div class="p-6">
+        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Suraksha 1.O</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+            Suraksha 1.O is my first independent IoT project—a smart alert-based device designed to enhance safety and responsiveness. This milestone marks my first achievement beyond campus, blending innovation, purpose, and personal growth.
+        </p>
+    </div>
+</div>
+
+<!-- Gallery Item 7 -->
+<div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/mm2.jpg' %}" alt="MittiMarts startup concept connecting local stores" class="w-full h-80 object-cover transform scale-100 transition-transform duration-300">
+    <div class="p-6">
+        <h3 class="text-2xl font-semibold mb-2 text-gray-800">MittiMarts</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+            MittiMarts is my first startup—a resilient venture born from three failed attempts and now thriving on its fourth. It bridges local stores in Indian villages and cities, empowering grassroots commerce through digital connectivity and community-first innovation.
+        </p>
+    </div>
+</div>
+
+<!-- Gallery Item 8 -->
+<div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/h.jpg' %}" alt="Modified helicopter toy turned into automated flying object" class="w-full h-80 object-cover transform scale-100 transition-transform duration-300">
+    <div class="p-6">
+        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Redefined Toy</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+            What began as a simple helicopter toy bought at a festival evolved into a fully automated flying object. This project reflects my passion for innovation—transforming play into purpose and engineering creativity into motion.
+        </p>
+    </div>
+</div>
+
+<!-- Gallery Item 9 -->
+<div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/rpi.jpg' %}" alt="Raspberry Pi setup and projects" class="w-full h-80 object-cover transform scale-100 transition-transform duration-300">
+    <div class="p-6">
+        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Obsessed with Raspberry Pi</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+            My creative playground—Raspberry Pi. From automation experiments to quirky DIY builds, this tiny board fuels my obsession with innovation. It’s not just a device; it’s the heartbeat of my tech tinkering and endless curiosity.
+        </p>
+    </div>
+</div> {% endcomment %}
+
+<div class="flex flex-wrap gap-6 justify-center p-4">
+  <!-- Gallery Card Template -->
+  <div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[340px] animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/stylepic.jpg' %}" alt="A stylish photo pose" class="w-full h-[200px] object-cover transition-transform duration-300">
+    <div class="p-4">
+      <h3 class="text-xl font-semibold mb-2 text-gray-800">Stylish Photography</h3>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        A personal portrait showcasing a confident and stylish pose, captured with dramatic lighting and a modern aesthetic.
+      </p>
+    </div>
+  </div>
+
+  <div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[340px] animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/coolpic.jpg' %}" alt="A stylish photo pose" class="w-full h-[200px] object-cover transition-transform duration-300">
+    <div class="p-4">
+      <h3 class="text-xl font-semibold mb-2 text-gray-800">Stylish Photography</h3>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        A personal portrait showcasing a confident and stylish pose, captured with dramatic lighting and a modern aesthetic.
+      </p>
+    </div>
+  </div>
+
+  <div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[340px] animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/random_pic.jpg' %}" alt="Stylish white-on-white outfit" class="w-full h-[200px] object-cover transition-transform duration-300">
+    <div class="p-4">
+      <h3 class="text-xl font-semibold mb-2 text-gray-800">Cool & Chill</h3>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        A relaxed yet fashion-forward look featuring a crisp white-on-white outfit, exuding effortless style and laid-back confidence.
+      </p>
+    </div>
+  </div>
+
+  <div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[340px] animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/ww.jpg' %}" alt="Stylish white-on-white outfit" class="w-full h-[200px] object-cover transition-transform duration-300">
+    <div class="p-4">
+      <h3 class="text-xl font-semibold mb-2 text-gray-800">Cool & Chill</h3>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        A relaxed yet fashion-forward look featuring a crisp white-on-white outfit, exuding effortless style and laid-back confidence.
+      </p>
+    </div>
+  </div>
+
+  <div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[340px] animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/b.jpg' %}" alt="Stylish brown dog named Brownie" class="w-full h-[200px] object-cover transition-transform duration-300">
+    <div class="p-4">
+      <h3 class="text-xl font-semibold mb-2 text-gray-800">Brownie</h3>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        Brownie, my stylish brown-coated dog, is the sharpest soul in my circle. With a smart gaze and a confident stride, he’s more than a pet—he’s the fashionable heartbeat of my everyday life.
+      </p>
+    </div>
+  </div>
+
+  <div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[340px] animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/kate.jpg' %}" alt="My cat Kate beside a laptop" class="w-full h-[200px] object-cover transition-transform duration-300">
+    <div class="p-4">
+      <h3 class="text-xl font-semibold mb-2 text-gray-800">My Kate</h3>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        Meet Kate—my confident, code-savvy cat who lounges beside my laptop like she owns the IDE. She's my stress buster, debugging buddy, and the only one who truly understands when my logic breaks.
+      </p>
+    </div>
+  </div>
+
+  <div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[340px] animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/s10.jpg' %}" alt="Suraksha 1.O IoT project device" class="w-full h-[200px] object-cover transition-transform duration-300">
+    <div class="p-4">
+      <h3 class="text-xl font-semibold mb-2 text-gray-800">Suraksha 1.O</h3>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        Suraksha 1.O is my first independent IoT project—a smart alert-based device designed to enhance safety and responsiveness. This milestone marks my first achievement beyond campus, blending innovation, purpose, and personal growth.
+      </p>
+    </div>
+  </div>
+
+  <div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[340px] animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/mm2.jpg' %}" alt="MittiMarts startup concept connecting local stores" class="w-full h-[200px] object-cover transition-transform duration-300">
+    <div class="p-4">
+      <h3 class="text-xl font-semibold mb-2 text-gray-800">MittiMarts</h3>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        MittiMarts is my first startup—a resilient venture born from three failed attempts and now thriving on its fourth. It bridges local stores in Indian villages and cities, empowering grassroots commerce through digital connectivity and community-first innovation.
+      </p>
+    </div>
+  </div>
+
+  <div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[340px] animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/h.jpg' %}" alt="Modified helicopter toy turned into automated flying object" class="w-full h-[200px] object-cover transition-transform duration-300">
+    <div class="p-4">
+      <h3 class="text-xl font-semibold mb-2 text-gray-800">Redefined Toy</h3>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        What began as a simple helicopter toy bought at a festival evolved into a fully automated flying object. This project reflects my passion for innovation—transforming play into purpose and engineering creativity into motion.
+      </p>
+    </div>
+  </div>
+
+  <div class="gallery-card bg-gray-100 rounded-xl shadow-lg overflow-hidden w-[300px] md:w-[340px] animate-[slideInUp_0.8s_ease-out_forwards]">
+    <img src="{% static 'image/rpi.jpg' %}" alt="Raspberry Pi setup and projects" class="w-full h-[200px] object-cover transition-transform duration-300">
+    <div class="p-4">
+      <h3 class="text-xl font-semibold mb-2 text-gray-800">Obsessed with Raspberry Pi</h3>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        My creative playground—Raspberry Pi. From automation experiments to quirky DIY builds, this tiny board fuels my obsession with innovation. It’s not just a device; it’s the heartbeat of my tech tinkering and endless curiosity.
+      </p>
+    </div>
+  </div>
+</div>
+            
+        {% comment %} </div> {% endcomment %}
+    {% comment %} </main> {% endcomment %}
+</body>
+</html>
+
+
+{% include "footer.html" %}
